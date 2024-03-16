@@ -1,0 +1,4 @@
+
+venv/*
+
+gamedashboard/gamedashboard/settings.py
