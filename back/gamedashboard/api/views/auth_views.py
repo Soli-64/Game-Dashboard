@@ -16,10 +16,11 @@ def signup_view(request):
     if request.method == 'POST':
         email: str = request.data.get('email')
         password: str = request.data.get('password')
+        name: str = request.data.get('name')
 
         code = get_random_string(length=6)
 
-        if email and password:
+        if email and password and name:
 
             if '@' not in email:
                 return JsonResponse(Error.throw(400, 'Adresse e-mail invalide'), status=400)
@@ -31,7 +32,7 @@ def signup_view(request):
             # preexisting_user = CustomUser.objects.get(email=email)
             if not email in get_verified_emails():
 
-                user = CustomUser.objects.create(email=email, password=make_password(password), verification_code=code)
+                user = CustomUser.objects.create(email=email, password=make_password(password), verification_code=code, name=name)
 
                 subject = 'Validation de votre adresse e-mail'
                 message = f" Votre code de confirmation: {code} "
@@ -41,6 +42,7 @@ def signup_view(request):
                 user_data = {
                     'id': user.id,
                     'email': user.email,
+                    #'name': user.name
                     # Ajoutez d'autres champs utilisateur si nécessaire
                 }
 
@@ -75,7 +77,8 @@ def validate_email_view(request):
                 user_data = {
                     'id': user.id,
                     'email': user.email,
-                    'is_admin': user.is_admin  # Utiliser is_admin de CustomUser
+                    'is_admin': user.is_admin,
+                    'name': user.name  # Utiliser is_admin de CustomUser
                     # Ajoutez d'autres champs utilisateur si nécessaire
                 }
 
@@ -109,6 +112,7 @@ def login_view(request):
                 user_data = {
                     'id': user.id,
                     'email': user.email,
+                    'name': user.name,
                     'is_admin': user.is_admin  # Utiliser is_admin de CustomUser
                 }
 

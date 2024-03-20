@@ -1,6 +1,6 @@
 
 
-export default function ProjectsPage() {
+export default function EditProjectPage() {
 
     return (
       <div className="pt-20 h-screen">

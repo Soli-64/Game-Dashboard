@@ -23,6 +23,7 @@ export async function sendLoginRequest(data: SubmitContent, User: UserContextVal
 
             User.setId(dbUser.id)
             User.setEmail(dbUser.email as string)
+            User.setName(dbUser.name as string)
             
             User.setStatus(UserStatus.Connected)
 
@@ -30,7 +31,8 @@ export async function sendLoginRequest(data: SubmitContent, User: UserContextVal
                 setInStorage('user', {
                     email: dbUser.email,
                     id: dbUser.id,
-                    isAdmin: dbUser.isAdmin
+                    isAdmin: dbUser.isAdmin,
+                    name: dbUser.name
                 })
             }
 

@@ -20,7 +20,7 @@ export function LoginForm() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = (data)  => {
@@ -48,24 +48,37 @@ export function LoginForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col  items-center justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="card bg-white w-80 glass h-full items-center ">
             
-            <h1 className="text-4xl font-bold mb-8">Se connecter</h1>
+            <div className="card-body flex flex-col relative mt-5 pt-10 pb-5">
 
-            <div className="flex flex-col">
-                <input placeholder="email" {...register('email', { required: true })} />
-                {errors.email && <span>This field is required</span>}
-                <hr className="h-6" />
-                <input type="password" placeholder="password" {...register('password', { required: true })} />
-                {errors.password && <span>This field is required</span>}
+                <h1 className="card-title text-4xl text-center font-extrabold text-base-100 mb-10">Se connecter</h1>
+                    <label className="input input-bordered h-10 text-lg flex items-center">
+                        <input className="grow" placeholder="email" {...register('email', { required: true })} />
+                    </label>
+
+                    <hr className="my-2" />
+
+                    {/* {errors.email && <span>This field is required</span>} */}
+
+                    <label className="input input-bordered h-10 text-lg flex items-center">
+                        <input type="password" placeholder="password" {...register('password', { required: true })} />
+                    </label>
+                    
+                    {/* {errors.password && <span>This field is required</span>} */}
+
+                <label className="label cursor-pointer justify-around mb-5">
+                    <input className="checkbox checkbox-primary" type="checkbox" {...register('remember')} />
+                    <span className="label-text text-black text-lg font-bold">Se souvenir de moi</span>
+                </label>
+
+                <div className="flex mt-auto justify-end">
+                    <input value="Se Connecter" className="w-full btn btn-outline btn-primary" type="submit" />
+                </div>
+
+
             </div>
 
-            <div className="flex flex-row items-center justify-center w-60 h-8 my-3">
-                <input type="checkbox" {...register('remember')} />
-                <label className="h-6">Se souvenir de moi</label>
-            </div>
-
-            <input type="submit" />
 
         </form>
     )

@@ -14,9 +14,9 @@ class ApiService {
 
     }
 
-    async createAccountRequest(email: string, password: string) {
+    async createAccountRequest(email: string, name: string, password: string) {
 
-        const response = await this.api.post('/signup', { email, password })
+        const response = await this.api.post('/signup', { email, password, name })
 
         const responseData: ResponseData = {
             success: response.data.success

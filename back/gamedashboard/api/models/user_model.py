@@ -25,8 +25,9 @@ class CustomUserManager(BaseUserManager):
 
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
+    name = models.CharField(max_length=20, default="guess")
     is_admin = models.BooleanField(default=False)
-    verification_code = models.CharField(max_length=6, default='aze')
+    verification_code = models.CharField(max_length=6, default='ApRJb3')
     email_verified = models.BooleanField(default=False)
 
     objects = CustomUserManager()

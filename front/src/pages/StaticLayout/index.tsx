@@ -23,7 +23,8 @@ export default function StaticLayout() {
                 User.setEmail(userInStorage.email as string)
                 User.setId(userInStorage.id)
                 User.setIsAdmin(userInStorage.isAdmin as boolean)
-                
+                User.setName(userInStorage.name as string)
+
                 // User.setDbContent({
                 //     ...User.dbContent
                 // })
@@ -39,7 +40,7 @@ export default function StaticLayout() {
 
     return (
       <>
-        <header className="flex bg-base-100 fixed top-0 left-0 right-0 text-white font-bold">
+        <header className="flex bg-base-100 fixed top-0 left-0 right-0 text-white font-bold h-18">
             
             <p className="flex-none m-5 w-1/5 text-center ">
                 <Link to='/'>
@@ -48,13 +49,13 @@ export default function StaticLayout() {
             </p>
             
             <nav className="flex-1 pl-5 m-5 w-4/5 flex">
+                
+                <Link className="flex-1 text-center" to="/projects">
+                    Mes Projets
+                </Link>
 
                 <Link className="flex-1 text-center" to="/profil">
                     Profil
-                </Link>
-
-                <Link className="flex-1 text-center" to="/projects">
-                    Mes Projets
                 </Link>
 
             </nav>

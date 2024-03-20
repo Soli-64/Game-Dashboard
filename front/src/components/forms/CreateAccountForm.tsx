@@ -9,6 +9,7 @@ import { UserStatus } from "../../packages/types";
 
 type Inputs = {
     email: string
+    name: string
     password: string
     confirmPassword: string
 }
@@ -21,7 +22,7 @@ export function CreateAccountForm() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<Inputs>()
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -30,6 +31,7 @@ export function CreateAccountForm() {
 
         const submitContent = {
             email: data.email,
+            name: data.name,
             password: data.password
         }
 
@@ -58,14 +60,18 @@ export function CreateAccountForm() {
     return (
         <>
         
-            <form onSubmit={handleSubmit(onSubmit)} className="card bg-white w-72 glass">
+            <form onSubmit={handleSubmit(onSubmit)} className="card bg-white w-80 glass h-full items-center ">
                 
-                <div className="card-body flex flex-col relative mt-5">
+                <div className="card-body flex flex-col relative mt-5 pb-5">
                 
                     <h1 className="card-title text-4xl text-center font-extrabold text-base-100 mb-5">Créer un compte</h1>
 
                     <label className="input input-bordered h-10 text-lg flex items-center">
                         <input className="grow" placeholder="email" {...register('email', { required: true })} />
+                    </label>
+
+                    <label className="input input-bordered h-10 text-lg flex items-center">
+                        <input className="grow" placeholder="username" {...register('name', { required: true })} />
                     </label>
                     {/* {errors.email && <span>This field is required</span>}   */}
 
@@ -82,8 +88,9 @@ export function CreateAccountForm() {
                     </label>
                     {/* {errors.confirmPassword && <span>This field is required</span>} */}
                     
-                    <input className="btn btn-primary btn-outline" type="submit" />
-
+                    <div className="flex mt-auto justify-end">
+                        <input value="Créer mon compte" className="w-full btn btn-outline btn-primary" type="submit" />
+                    </div>
                 </div>
 
             </form>

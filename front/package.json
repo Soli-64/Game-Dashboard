@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "boring-avatars": "^1.10.1",
+    "randomcolor": "^0.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.30",
+    "@types/randomcolor": "^0.5.9",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@types/validator": "^13.11.9",

@@ -3,13 +3,14 @@ import { UserContextValue, UserSchema, UserStatus } from "../../types"
 
 type SubmitContent = {
     email: string
+    name: string
     password: string
 }
 
 
 export const createAccount = async (data: SubmitContent, User: UserContextValue) => {
     
-    const response = await api.createAccountRequest(data.email, data.password)
+    const response = await api.createAccountRequest(data.email, data.name, data.password)
 
     if (response.success) {
         
@@ -17,7 +18,8 @@ export const createAccount = async (data: SubmitContent, User: UserContextValue)
 
         User.setId(dbUser.id)
         User.setEmail(dbUser.email as string)
-        
+        User.setName(dbUser.name as string)
+
         User.setStatus(UserStatus.WaitingEmailValidation)
 
     } else {

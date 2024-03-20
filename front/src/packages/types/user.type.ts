@@ -1,10 +1,11 @@
 
 
 export type UserSchema = {
-    email?: string,
     id: number,
+    email?: string,
+    name?: string
+    isAdmin?: boolean,
     password?: string,
-    isAdmin?: boolean
 }
 
 export type UserDbContentSchema = {}
