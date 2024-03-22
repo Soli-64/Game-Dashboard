@@ -5,9 +5,8 @@ import Avatar from "boring-avatars";
 import { createAvatarRandomColors } from "../../packages/functions";
 
 export default function ProfilPage() {
+    
   const User = useContext(UserContext);
-
-
 
   return (
     <div className="h-screen pt-20">

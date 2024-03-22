@@ -17,7 +17,7 @@ export async function sendLoginRequest(data: SubmitContent, User: UserContextVal
 
         if (response.success) {
             
-            const dbUser = response.user as UserSchema
+            const dbUser = response.data as UserSchema
 
             console.log(dbUser)
 

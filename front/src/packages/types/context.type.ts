@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { UserDbContentSchema } from "."
+import { ProjectSchema, UserDbContentSchema } from "."
 
 export enum UserStatus {
     Loading = 'loading',
@@ -19,6 +19,8 @@ export type UserContextValue = {
     setIsAdmin: (arg: boolean) => void
     status: UserStatus
     setStatus: (arg: UserStatus) => void
+    projects: ProjectSchema[],
+    setProjects: (arg: ProjectSchema[]) => void
     dbContent: UserDbContentSchema
     setDbContent: (arg: UserDbContentSchema) => void
 }

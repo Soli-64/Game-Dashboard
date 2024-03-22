@@ -12,8 +12,6 @@ export function createAvatarRandomColors(): string[] {
 
     colors.push('#ffffff')
 
-    console.log(colors)
-    
     return colors
 
 }

@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
-import { UserContextProviderProps, UserContextValue, UserDbContentSchema, UserStatus } from "../packages/types";
-
+import { ProjectSchema, UserContextProviderProps, UserContextValue, UserDbContentSchema, UserStatus } from "../packages/types";
 
 export const UserContext = createContext<UserContextValue>(
     {
@@ -14,6 +13,8 @@ export const UserContext = createContext<UserContextValue>(
         setIsAdmin: () => {},
         status: UserStatus.Deconnected,
         setStatus: () => {},
+        projects: [],
+        setProjects: () => {},
         dbContent: {},
         setDbContent: () => {}
     }
@@ -25,6 +26,7 @@ export function UserContextProvider ({ children }: UserContextProviderProps) {
     const [id, setId] = useState(0) 
     const [isAdmin, setIsAdmin] = useState(false) 
     const [status, setStatus] = useState(UserStatus.Deconnected)
+    const [projects, setProjects] = useState<ProjectSchema[]>([])
     const [dbContent, setDbContent] = useState<UserDbContentSchema>({})
 
     return (
@@ -40,6 +42,8 @@ export function UserContextProvider ({ children }: UserContextProviderProps) {
             setIsAdmin: (arg: boolean) => setIsAdmin(arg),
             status,
             setStatus: (arg: UserStatus) => setStatus(arg),
+            projects,
+            setProjects: (arg: ProjectSchema[]) => setProjects(arg),
             dbContent,
             setDbContent: (arg: UserDbContentSchema) => setDbContent(arg)
         }}>

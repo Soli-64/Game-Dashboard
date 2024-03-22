@@ -19,7 +19,7 @@ export const verifyEmail = async (data: SubmitContent, User: UserContextValue) =
 
         if (response.success) {
 
-            const user = response.user as UserSchema
+            const user = response.data as UserSchema
 
             User.setStatus(UserStatus.Connected)
 

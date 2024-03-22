@@ -4,6 +4,7 @@ import NoMatchPage from "./pages/NoMatch";
 import ProfilPage from "./pages/Profil";
 import HomePage from "./pages/Home";
 import ProjectsPage from "./pages/MyProjects";
+import ProjectDashPage from "./pages/ProjectBoardPage";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/profil" element={<ProfilPage />} />
-          <Route path="/edit/:project-name" element={<ProfilPage />} />
+          <Route path="/projects/:projectname" element={<ProjectDashPage />} />
 
         </Route>
 

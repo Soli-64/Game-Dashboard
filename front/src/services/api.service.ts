@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios"
-import { AuthError, ResponseData, UserSchema } from "../packages/types"
+import { UserContextValue } from "../packages/types"
+import { ApiResponse } from "../packages/functions"
 
 
 class ApiService {
@@ -18,65 +19,45 @@ class ApiService {
 
         const response = await this.api.post('/signup', { email, password, name })
 
-        const responseData: ResponseData = {
-            success: response.data.success
-        }
-
-        if (response.data.success) {
-            responseData.user = response.data.user as UserSchema
-        } else {
-            responseData.errors = response.data.errors as AuthError
-        }
-
-        return responseData
+        return ApiResponse(response.data.success, response.data.user, response.data.errors)
 
     }
 
     async verifyEmailRequest(id: number, submitCode: string) {
         const response = await this.api.post('/validate-email', { id, submitCode })
     
-        const responseData: ResponseData = {
-            success: response.data.success
-        }
+        return ApiResponse(response.data.success, response.data.user, response.data.errors)
 
-        if (response.data.success) {
-            responseData.user = response.data.user as UserSchema
-        } else {
-            responseData.errors = response.data.errors as AuthError
-        }
-
-        return responseData
     }
 
     async loginRequest(email: string, password: string) {
 
         const response = await this.api.post('/login', { email, password })
-        
-        const responseData: ResponseData = {
-            success: response.data.success
-        }
 
-        if (response.data.success) {
-            responseData.user = response.data.user as UserSchema
-        } else {
-            responseData.errors = response.data.errors as AuthError
-        }
+        return ApiResponse(response.data.success, response.data.user, response.data.errors)
 
-        return responseData
     }
 
     async logoutRequest() {
         const response = await this.api.post('/logout', {})
 
-        const responseData: ResponseData = {
-            success: response.data.success
-        }
+        return ApiResponse(response.data.success, {}, response.data.errors)
+    }
 
-        if (!response.data.success) {
-            responseData.errors = response.data.errors as AuthError
-        }
+    async getProjects(User: UserContextValue) {
 
-        return responseData
+        const response = await this.api.post('/get-projects', { user_id: User.id })
+
+        return ApiResponse(response.data.success, response.data.content, response.data.errors)
+
+    }
+
+    async getRepo(repo_name: string, user_gitid: string) {
+
+        const response = await axios.get(`https://api.github.com/repos/${user_gitid}/${repo_name}`)
+
+        return response
+
     }
 
 }

@@ -14,7 +14,7 @@ export const createAccount = async (data: SubmitContent, User: UserContextValue)
 
     if (response.success) {
         
-        const dbUser = response.user as UserSchema
+        const dbUser = response.data as UserSchema
 
         User.setId(dbUser.id)
         User.setEmail(dbUser.email as string)

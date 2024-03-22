@@ -2,7 +2,6 @@ from django.contrib.auth.hashers import make_password, check_password
 from django.contrib.auth import login, logout
 from rest_framework.decorators import api_view
 from django.utils.crypto import get_random_string
-from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.http import JsonResponse
 from ..functions.email_functions import verify_email
@@ -37,7 +36,7 @@ def signup_view(request):
                 subject = 'Validation de votre adresse e-mail'
                 message = f" Votre code de confirmation: {code} "
                 
-                send_mail(subject, message, 'ToolBox Email Confirmation', [email])
+                send_mail(subject, message, 'GameDashboard Email Confirmation', [email])
 
                 user_data = {
                     'id': user.id,

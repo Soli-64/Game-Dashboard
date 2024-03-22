@@ -40,7 +40,7 @@ export default function StaticLayout() {
 
     return (
       <>
-        <header className="flex bg-base-100 fixed top-0 left-0 right-0 text-white font-bold h-18">
+        <header className="z-50 flex bg-base-100 fixed top-0 left-0 right-0 text-white font-bold h-18">
             
             <p className="flex-none m-5 w-1/5 text-center ">
                 <Link to='/'>
